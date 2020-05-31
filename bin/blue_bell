@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "../lib/blue_bell_flavors.rb"
+
+BlueBellFlavors::CLI.new.call
+
+#MAY 29: DONE
