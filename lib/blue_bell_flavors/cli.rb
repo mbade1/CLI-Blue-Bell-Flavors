@@ -1,17 +1,25 @@
-class BlueBell::CLI
+class CLI
 
   def call
-    BlueBell::Scraper.scrape_our_products
+    Scraper.scrape_our_products
     welcome
     flavor_listings
     menu
   end
 
   def welcome
-    #Welcomes the user and asks the following:
-    #Hello and welcome to the Blue Bell Ice Cream Flavor CLI!
-    #To see all of our wonderful Blue Bell Ice Cream Flavors, type list.
-    #To end this program, type exit.
+    puts ""
+    puts "\|/          (__)"    
+    puts "     `\------(oo)"
+    puts "       ||   (__)"
+    puts "       ||w--||     \|/"
+    puts "   \|/"
+    puts ""
+    puts "Welcome to the Blue Bell Ice Cream Flavor CLI!"
+    puts ""
+    puts "To see all of our wonderful Blue Bell Ice Cream Flavors, type 'list'."
+    puts "To end this program, type 'exit'."
+    puts ""
   end
 
   def flavor_listings
