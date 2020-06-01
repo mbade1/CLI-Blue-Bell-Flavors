@@ -26,7 +26,7 @@ class BlueBellFlavors::CLI
 
 ##call method (method used for actual CLI) - the #call method MUST match the bin/blue_bell file (line 6)
   #scraper method - ##all flavors MUST scrape for:
-    #title, size (half gallon), description, and url with nutrition info.
+    #size (half gallon), description, and url with nutrition info.
   ##welcome - lists the welcome message - lines 3-10 above
   ##flavor_listings
     #lists lines 12-24
