@@ -23,7 +23,7 @@ class CLI
   end
 
   def flavor_listings
-    #get the input and list those items:
+    #get the input and list those items
     input = gets.strip
       # if user types "list"
     if input == "list"

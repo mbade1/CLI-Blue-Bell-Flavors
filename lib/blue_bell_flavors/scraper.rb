@@ -1,8 +1,8 @@
 require 'open-uri'
 require 'nokogiri'
+require 'pry'
 
-
-class BlueBell::Scraper
+class Scraper
   #scraper method - ##all flavors MUST scrape for:
     #name, size (half gallon), description, and url with nutrition info.
    
@@ -13,7 +13,7 @@ class BlueBell::Scraper
 
     product = site.css(".products .description.tabs .description__wrapper .description__inner")
     product.each do |product_info|
-      binding.pry
+      
       name = product_info.css(".description__aside h4.description__title").text
       size = product_info.css(".description__aside .description__menu li.nutrition_tabs .description__submenu a.tab__trigger").text
       description = product_info.css(".description__body .description__content h5").text
@@ -25,7 +25,7 @@ class BlueBell::Scraper
     all
   end
 end
-
+binding.pry
 #source for all product_info:
 
 #name = .description__aside h4.description__title
