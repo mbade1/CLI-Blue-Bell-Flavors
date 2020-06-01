@@ -1,8 +1,8 @@
 require 'open-uri'
 require 'nokogiri'
-require 'pry'
 
-class BlueBellFlavors::Scraper
+
+class BlueBell::Scraper
   #scraper method - ##all flavors MUST scrape for:
     #name, size (half gallon), description, and url with nutrition info.
    

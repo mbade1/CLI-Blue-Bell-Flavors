@@ -1,7 +1,7 @@
-class BlueBellFlavors::CLI
+class BlueBell::CLI
 
   def call
-    BlueBellFlavors::Scraper.scrape_our_products
+    BlueBell::Scraper.scrape_our_products
     welcome
     flavor_listings
     menu
@@ -19,8 +19,8 @@ class BlueBellFlavors::CLI
     input = gets.strip
       # if user types "list"
     if input == "list"
-      puts ""
       #list ALL of the flavors from the BlueBellIceCream Class
+      puts ""
       flavors = BlueBellFlavors::BlueBellIceCream.all
       #list the flavors with an index number.
       flavors.each.with_index(1) {|flavor, index| puts "#{flavor} #{index.name}"}

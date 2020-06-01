@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require "blue_bell_flavors.rb"
+require "blue_bell"
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
@@ -12,5 +12,3 @@ require "blue_bell_flavors.rb"
 
 require "irb"
 IRB.start(__FILE__)
-
-May 29: DONE
