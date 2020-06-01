@@ -56,7 +56,7 @@ class BlueBell::CLI
 
   def menu
     puts ""
-    puts "Please select the number of the flavor you wish to know more about! Otherwise, type exit to leave the program."
+    puts "Please select the number of the flavor you wish to know more about! Otherwise, type 'exit' to leave the program."
     input = gets.strip
 
     if input.to_i > 0
