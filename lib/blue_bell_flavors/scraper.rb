@@ -2,33 +2,33 @@ require 'open-uri'
 require 'nokogiri'
 require 'pry'
 
-
 class BlueBellFlavors::Scraper
   #scraper method - ##all flavors MUST scrape for:
-    #size (half gallon), description, and url with nutrition info.
+    #name, size (half gallon), description, and url with nutrition info.
+   
+  def self.scrape_our_products
+    site = Nokogiri::HTML(open('https://www.bluebell.com/our-products/'))
 
-    def self.scrape_our_products
-      site = Nokogiri::HTML(open('https://www.bluebell.com/our-products/'))
+    all = []
 
-      all = []
+    product = site.css(".products .description.tabs .description__wrapper .description__inner")
+    product.each do |product_info|
+      binding.pry
+      name = product_info.css(".description__aside h4.description__title").text
+      size = product_info.css(".description__aside .description__menu li.nutrition_tabs .description__submenu a.tab__trigger").text
+      description = product_info.css(".description__body .description__content h5").text
+      nutrition = product_info.css(".description__aside ul.description__menu .nutrition_tabs .description__submenu .nutrition-item a.tab__trigger").attr("href").text
 
-      product = site.css(".products .description.tabs .description__wrapper")
-      product.each do |product_info|
-        binding.pry
-        name = product_info.css(".description__inner .description__aside h4.description__title").text
-        size = product_info.css("").text
-        description = product_info.css("").text
-        nutrition = product_info.css("a").attr("href").text
-
-        product_hash = {:name => name, :size => size, :description => description, :nutrition => nutrition}
-        all << product_hash
+      product_hash = {:name => name, :size => size, :description => description, :nutrition => nutrition}
+      all << product_hash
       end
-      all
-    end
+    all
   end
+end
 
-#scraping for the description of each ice cream flavor
-#iterate over each descriptor for the correct listing.
+#source for all product_info:
 
-#name = .description__inner .description__aside h4.description__title
-#size = .
+#name = .description__aside h4.description__title
+#size = .description__aside .description__menu li.nutrition_tabs .description__submenu a.tab__trigger 
+#description =  .description__body .description__content h5
+#nutrition = .description__aside ul.description__menu .nutrition_tabs .description__submenu .nutrition-item a.tab__trigger 

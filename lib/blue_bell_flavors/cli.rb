@@ -1,42 +1,69 @@
 class BlueBellFlavors::CLI
 
-  #Welcomes the user and asks the following:
+  def call
+    BlueBellFlavors::Scraper.scrape_our_products
+    welcome
+    flavor_listings
+    menu
+  end
+
+  def welcome
+    #Welcomes the user and asks the following:
     #Hello and welcome to the Blue Bell Ice Cream Flavor CLI!
-    #To select a type of flavor, please select a number from the following list:
-      #1 - New Flavors (== what's new on site)
-      #2 - Year Round Flavors
-      #3 - Rotational Flavors
-      #4 - Lite/No Sugar Added Flavors
-      #5 - Exit
+    #To see all of our wonderful Blue Bell Ice Cream Flavors, type list.
+    #To end this program, type exit.
+  end
 
+  def flavor_listings
     #get the input and list those items:
-      # if input.to_i == 1 ####   Maybe we need to use gets.chomp.to_i or gets.string.to_i
-        ##new_flavors
-      #elsif input.to_i == 2
-        ##year_round_flavors
-      #elsif input.to_i == 3
-        ##rotational_flavors
-      #elsif input.to_i == 4
-        ##lite_no_sugar_added_flavors
-      #elsif input.to_i == 5
-        ##exit_method
-      #else
-        #puts "Sorry, I did not understand that input. Please try again.""
+    input = gets.strip
+      # if user types "list"
+    if input == "list"
+      puts ""
+      #list ALL of the flavors from the BlueBellIceCream Class
+      flavors = BlueBellFlavors::BlueBellIceCream.all
+      #list the flavors with an index number.
+      flavors.each.with_index(1) {|flavor, index| puts "#{flavor} #{index.name}"}
+    #if user types "exit"
+    elsif input == "exit"
+      #clear the system and exit the program
+      system "clear" or system "cls"
+      exit
+    #if user mistypes, restart the flavor_listings method.
+    else
+      puts ""
+      puts "Please type 'list' to see our flavors, or 'exit' to exit the program."
+      flavor_listings
+    end
+  end
 
+  def menu
+    #once the list is established, have the user type an integer for which flavor they want to know more info.
+    puts ""
+    puts "Please select the number of the flavor you wish to know more about! Otherwise, type exit to leave the program."
+    input = gets.strip
 
-##call method (method used for actual CLI) - the #call method MUST match the bin/blue_bell file (line 6)
-  #scraper method - ##all flavors MUST scrape for:
-    #size (half gallon), description, and url with nutrition info.
-  ##welcome - lists the welcome message - lines 3-10 above
-  ##flavor_listings
-    #lists lines 12-24
-  ##exit_method
-    #puts "Thank you for looking at our ice cream flavors! Have yourself a Blue Bell country day!"
-
-
-##welcome class method
-
-
-
-
+    if input.to_i > 0
+      #Take the user input and assign it to the same flavor they want (array index are - 1 from user input)
+      flavor_choice = BlueBellFlavors::blue_bell_ice_cream.find_by_index(input.to_i - 1)
+      #list the flavor name, size, description, and a URL to nutritional info.
+      puts ""
+      puts "BLUE BELL FLAVORS RULE!"
+      puts "Flavor Chosen: #{flavor_choice.name}"
+      puts "Size: #{flavor_choice.size}"
+      puts "Description: #{flavor_choice.description}"
+      puts "Nutritional URL: #{flavor_choice.nutrition}"
+    #if the user typed exit, exit the program
+    elsif input == "exit"
+      puts ""
+      puts "Take care! Thanks for stopping in!"
+      puts ""
+      system "clear" or system "cls"
+      exit
+    else
+    #if the user types an unknown flavor or not-exit, start the menu method again.
+      puts "Please try again."
+      menu
+    end
+  end
 end
