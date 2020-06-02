@@ -24,11 +24,11 @@ class BlueBell::CLI
 
   def flavor_listings
     input = gets.strip
-    if input == "list"
+    if input.downcase == "list"
       puts ""
       flavors = BlueBell::BlueBellIceCream.all
-      flavors.each.with_index(1) {|flavor, index| puts "#{flavor} #{index.name}"}
-    elsif input == "exit"
+      flavors.each.with_index(1) {|flavor, index| puts "#{index} #{flavor.name}"}
+    elsif input.downcase == "exit"
       system "clear" or system "cls"
       exit
     else
@@ -51,7 +51,7 @@ class BlueBell::CLI
       puts "Size: #{flavor_choice.size}"
       puts "Description: #{flavor_choice.description}"
       puts "Nutritional URL: #{flavor_choice.nutrition}"
-    elsif input == "exit"
+    elsif input.downcase == "exit"
       puts ""
       puts "Take care! Thanks for stopping in!"
       puts ""
